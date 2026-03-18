@@ -1,11 +1,13 @@
 import "../App.css";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+// import Unitypng from "../assets/unity.png";
+import logo from "../assets/logo.png";
 
 function Navbar(props) {
   return (
     <>
-        <div style={{    backgroundColor: "green",
+        <div style={{    backgroundColor: "rgb(30, 58, 138)",
                          display: "flex",
                          textDecoration: "none",
                          justifyContent: "spacebetween",
@@ -18,7 +20,18 @@ function Navbar(props) {
                          fontSize: "1.3rem",
                          fontWeight: "bold",
                        listStyle: "none"
-                   }}>Digital Loan and Savings management (DLSM).</li></div> 
+     }}><img src={logo} alt="logo" style={{
+                      width: "50px",
+                      height: "50px",
+                      marginRight: "10px",
+                      borderRadius: "10px",
+                      backgroundColor: "white",
+                      borderaRdius: "5%",
+                      padding: "4px",
+                      boxShadow: "0 3px 8px rgba(0,0,0,0.3)",
+                     verticalAlign: "middle"
+  }}
+/>UNITY FINANCE SYSTEM</li></div> 
        <ul style={{
                         listStyle: "none",
                         display: "flex",
@@ -40,7 +53,7 @@ function Navbar(props) {
                                  textDecoration: "none"
                                  }}>{props.link2}</Link>
 
-        <Link to="/support"style={{color: "white" , 
+        <Link to="/connect"style={{color: "white" , 
                                      fontSize: "1.3rem" ,
                                      fontWeight: "bold" ,
                                       textDecoration: "none"

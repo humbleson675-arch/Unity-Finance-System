@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-function About() {
+function Connect() {
   const [visible, setVisible] = useState([]);
   const refs = useRef([]);
 
@@ -32,52 +32,42 @@ function About() {
     <div style={styles.page}>
 
       {/* FLOATING BACKGROUND */}
-      <div style={styles.bgCircle1}></div>
-      <div style={styles.bgCircle2}></div>
+      <div style={styles.bg1}></div>
+      <div style={styles.bg2}></div>
 
       {/* HERO */}
       <section ref={(el) => (refs.current[0] = el)} style={{ ...styles.hero, ...animate(0) }}>
-        <h1 style={styles.heroTitle}>Digital Loan & Savings System</h1>
+        <h1 style={styles.heroTitle}>Connect With Us</h1>
         <p style={styles.heroText}>
-          Secure. Transparent. Built for modern communities.
+          Let’s collaborate to build transparent and impactful financial systems.
         </p>
-        <button style={styles.ctaBtn}>Get Started</button>
+        <button style={styles.button}>Get In Touch</button>
       </section>
 
-      {/* STATS */}
-      <section ref={(el) => (refs.current[1] = el)} style={{ ...styles.stats, ...animate(1) }}>
-        {["100+ Members", "Secure Data", "Fast Loans", "Trusted System"].map((s, i) => (
-          <div key={i} style={styles.statCard}>
-            {s}
-          </div>
-        ))}
-      </section>
-
-      {/* CARDS */}
-      <section ref={(el) => (refs.current[2] = el)} style={{ ...styles.grid, ...animate(2) }}>
-        {data.map((item, i) => (
+      {/* CONTENT */}
+      <section ref={(el) => (refs.current[1] = el)} style={{ ...styles.grid, ...animate(1) }}>
+        {cards.map((card, i) => (
           <div key={i} style={styles.card}>
-            <h3 style={styles.title}>{item.title}</h3>
+            <h3 style={styles.title}>{card.title}</h3>
 
-            {item.list ? (
+            {card.list ? (
               <ul style={styles.list}>
-                {item.list.map((li, idx) => (
-                  <li key={idx} style={styles.listItem}>{li}</li>
+                {card.list.map((item, idx) => (
+                  <li key={idx} style={styles.listItem}>{item}</li>
                 ))}
               </ul>
             ) : (
-              <p style={styles.text}>{item.text}</p>
+              <p style={styles.text}>{card.text}</p>
             )}
           </div>
         ))}
       </section>
-      
 
       {/* CTA */}
-      <section ref={(el) => (refs.current[3] = el)} style={{ ...styles.cta, ...animate(3) }}>
-        <h2 style={styles.ctaTitle}>Build Financial Confidence</h2>
+      <section ref={(el) => (refs.current[2] = el)} style={{ ...styles.cta, ...animate(2) }}>
+        <h2 style={styles.ctaTitle}>Let’s Build Together</h2>
         <p style={styles.ctaText}>
-          Manage savings and loans with clarity and control.
+          Connect with us to collaborate, innovate, and create meaningful impact.
         </p>
       </section>
 
@@ -85,34 +75,34 @@ function About() {
   );
 }
 
-export default About;
+export default Connect;
 
 /* DATA */
-const data = [
+const cards = [
   {
-    title: "Our Mission",
-    text: "Empowering communities with secure and transparent financial tools.",
+    title: "Why Connect With DLSMS?",
+    text: "Connecting with us opens opportunities to collaborate on transparent and innovative financial solutions.",
   },
   {
-    title: "Our Vision",
-    text: "A future where everyone has access to smart financial systems.",
-  },
-  {
-    title: "What We Do",
+    title: "Ways to Connect",
     list: [
-      "Track savings",
-      "Manage loans",
-      "Monitor repayments",
-      "Improve transparency",
+      "Partnership opportunities",
+      "Technical collaboration",
+      "Training & knowledge sharing",
+      "Community engagement",
     ],
   },
   {
-    title: "Who We Serve",
-    text: "Community groups, NGOs, and financial associations.",
+    title: "Our Shared Impact",
+    text: "Together, we promote transparency, strengthen trust, and empower communities.",
+  },
+  {
+    title: "Start the Conversation",
+    text: "Reach out and connect with us to explore ideas and build solutions together.",
   },
 ];
 
-/* STYLES */
+/* STYLES (unchanged) */
 const styles = {
   page: {
     fontFamily: "Segoe UI, sans-serif",
@@ -121,8 +111,7 @@ const styles = {
     position: "relative",
   },
 
-  /* FLOATING BG */
-  bgCircle1: {
+  bg1: {
     position: "absolute",
     width: "300px",
     height: "300px",
@@ -130,11 +119,11 @@ const styles = {
     borderRadius: "50%",
     top: "-80px",
     left: "-80px",
-    filter: "blur(100px)",
+    filter: "blur(120px)",
     opacity: 0.3,
   },
 
-  bgCircle2: {
+  bg2: {
     position: "absolute",
     width: "300px",
     height: "300px",
@@ -146,14 +135,13 @@ const styles = {
     opacity: 0.3,
   },
 
-  /* HERO */
   hero: {
     textAlign: "center",
     padding: "100px 20px",
   },
 
   heroTitle: {
-    fontSize: "clamp(32px,5vw,50px)",
+    fontSize: "clamp(30px,5vw,48px)",
     color: "#1e3a8a",
     fontWeight: "700",
   },
@@ -163,9 +151,9 @@ const styles = {
     color: "#374151",
   },
 
-  ctaBtn: {
+  button: {
     marginTop: "20px",
-    padding: "14px 30px",
+    padding: "14px 32px",
     borderRadius: "10px",
     border: "none",
     background: "linear-gradient(135deg,#1e3a8a,#2563eb)",
@@ -174,41 +162,21 @@ const styles = {
     transition: "0.3s",
   },
 
-  /* STATS */
-  stats: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
-    gap: "20px",
-    padding: "40px 20px",
-    maxWidth: "1000px",
-    margin: "auto",
-  },
-
-  statCard: {
-    padding: "20px",
-    textAlign: "center",
-    borderRadius: "14px",
-    background: "rgba(255,255,255,0.7)",
-    backdropFilter: "blur(10px)",
-    boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-    transition: "0.3s",
-  },
-
-  /* GRID */
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
     gap: "25px",
-    padding: "40px 20px",
-    maxWidth: "1000px",
+    padding: "50px 20px",
+    maxWidth: "1100px",
     margin: "auto",
   },
 
   card: {
-    background: "#fff",
+    backdropFilter: "blur(12px)",
+    background: "rgba(255,255,255,0.7)",
     padding: "25px",
     borderRadius: "16px",
-    boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
     transition: "all 0.3s ease",
     cursor: "pointer",
   },
@@ -237,7 +205,6 @@ const styles = {
     textAlign: "center",
   },
 
-  /* CTA */
   cta: {
     marginTop: "50px",
     padding: "80px 20px",
@@ -248,7 +215,7 @@ const styles = {
   },
 
   ctaTitle: {
-    fontSize: "28px",
+    fontSize: "clamp(24px,4vw,34px)",
   },
 
   ctaText: {

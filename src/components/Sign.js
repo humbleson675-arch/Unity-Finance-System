@@ -228,8 +228,9 @@ import axios from "axios";
 
 function SignUpForm() {
   const navigate = useNavigate();
-
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const [data, setData] = useState({
     name: "",
@@ -242,33 +243,23 @@ function SignUpForm() {
 
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
   const validateLogin = () => {
     const newErrors = {};
-
     if (!data.email) newErrors.email = "Email is required";
     if (!data.password) newErrors.password = "Password is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const validateSignup = () => {
     const newErrors = {};
-
     if (!data.name) newErrors.name = "Full name required";
     if (!data.phone) newErrors.phone = "Phone required";
     if (!data.email) newErrors.email = "Email required";
-
-    if (data.password.length < 6)
-      newErrors.password = "Password must be 6 characters";
-
-    if (data.password !== data.confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
-
+    if (data.password.length < 6) newErrors.password = "Password must be 6 characters";
+    if (data.password !== data.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -276,30 +267,20 @@ function SignUpForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!validateLogin()) return;
-
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/users/login",
-        {
-          email: data.email,
-          password: data.password,
-        }
-      );
-
+      const response = await axios.post("http://localhost:8080/api/users/login", {
+        email: data.email,
+        password: data.password,
+      });
       if (response.data.status === "00") {
         const { token, user } = response.data;
-
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-
         const role = user.role.toLowerCase();
-
         if (role === "admin") navigate("/admin");
         else if (role === "treasurer") navigate("/treasurer");
         else navigate("/dashboard");
-      } else {
-        alert(response.data.message);
-      }
+      } else alert(response.data.message);
     } catch (error) {
       alert("Login failed");
     }
@@ -308,75 +289,144 @@ function SignUpForm() {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (!validateSignup()) return;
-
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/users/register",
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          password: data.password,
-          role: data.role,
-        }
-      );
-
+      const response = await axios.post("http://localhost:8080/api/users/register", {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        password: data.password,
+        role: data.role,
+      });
       if (response.data.status === "00") {
         alert("Account created successfully");
         setIsLogin(true);
-      } else {
-        alert(response.data.message);
-      }
+      } else alert(response.data.message);
     } catch (error) {
       alert("Signup failed");
     }
   };
 
+  /* STYLES */
   const styles = {
+    page: {
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "20px",
+      background: "#ffffff", // page background white
+    },
     container: {
-      maxWidth: "400px",
-      margin: "80px auto",
-      padding: "30px",
-      borderRadius: "10px",
-      background: "#bbc5bc",
-      boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+      width: "100%",
+      maxWidth: "420px",
+      padding: "35px 30px",
+      borderRadius: "16px",
+      background: "#1e3a8a", // deep blue form
+      boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
+      transition: "all 0.5s ease",
+      color: "#fff",
+    },
+    title: {
+      textAlign: "center",
+      marginBottom: "20px",
+      color: "#fff",
+      fontSize: "24px",
+      fontWeight: "700",
+    },
+    inputWrapper: {
+      position: "relative",
+      marginBottom: "15px",
     },
     input: {
       width: "100%",
-      padding: "10px",
-      marginBottom: "10px",
-      borderRadius: "5px",
+      padding: "12px",
+      borderRadius: "8px",
       border: "1px solid #ccc",
+      fontSize: "14px",
+      outline: "none",
+      transition: "0.3s",
+      color: "#1e3a8a",
+      backgroundColor: "#fff",
+    },
+    toggleBtn: {
+      position: "absolute",
+      right: "12px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      cursor: "pointer",
+      fontSize: "14px",
+      color: "#1e3a8a",
+      fontWeight: "600",
     },
     button: {
       width: "100%",
-      padding: "12px",
-      background: "#198754",
+      padding: "14px",
+      marginTop: "15px",
+      background: "#2563eb", // lighter blue for button
       color: "#fff",
       border: "none",
-      borderRadius: "6px",
+      borderRadius: "10px",
       fontWeight: "bold",
       cursor: "pointer",
+      transition: "0.3s",
     },
     switch: {
       marginTop: "15px",
       textAlign: "center",
       cursor: "pointer",
-      color: "blue",
+      color: "#dbeafe",
+      fontSize: "14px",
+    },
+    link: {
+      textAlign: "center",
+      marginTop: "10px",
+      cursor: "pointer",
+      color: "#dbeafe",
+      fontSize: "14px",
     },
     error: {
-      color: "red",
+      color: "#f87171",
       fontSize: "12px",
+      marginTop: "4px",
     },
   };
 
   return (
-    <div style={styles.container}>
-      {isLogin ? (
-        <>
-          <h2>Sign In</h2>
+    <div style={styles.page}>
+      <div
+        style={{
+          ...styles.container,
+          transform: isLogin ? "translateX(0)" : "translateX(-10px)",
+        }}
+      >
+        <h2 style={styles.title}>{isLogin ? "Sign In" : "Create Account"}</h2>
 
-          <form onSubmit={handleLogin}>
+        <form onSubmit={isLogin ? handleLogin : handleSignup}>
+          {!isLogin && (
+            <>
+              <div style={styles.inputWrapper}>
+                <input
+                  style={styles.input}
+                  placeholder="Full Name"
+                  name="name"
+                  onChange={handleChange}
+                />
+                <div style={styles.error}>{errors.name}</div>
+              </div>
+
+              <div style={styles.inputWrapper}>
+                <input
+                  style={styles.input}
+                  placeholder="Phone"
+                  name="phone"
+                  onChange={handleChange}
+                />
+                <div style={styles.error}>{errors.phone}</div>
+              </div>
+            </>
+          )}
+
+          <div style={styles.inputWrapper}>
             <input
               style={styles.input}
               placeholder="Email"
@@ -384,94 +434,63 @@ function SignUpForm() {
               onChange={handleChange}
             />
             <div style={styles.error}>{errors.email}</div>
+          </div>
 
+          <div style={styles.inputWrapper}>
             <input
               style={styles.input}
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               name="password"
               onChange={handleChange}
             />
+            <span style={styles.toggleBtn} onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? "Hide" : "Show"}
+            </span>
             <div style={styles.error}>{errors.password}</div>
+          </div>
 
-            <button type="submit" style={styles.button}>
-              Login
-            </button>
+          {!isLogin && (
+            <div style={styles.inputWrapper}>
+              <input
+                style={styles.input}
+                type={showConfirm ? "text" : "password"}
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                onChange={handleChange}
+              />
+              <span style={styles.toggleBtn} onClick={() => setShowConfirm(!showConfirm)}>
+                {showConfirm ? "Hide" : "Show"}
+              </span>
+              <div style={styles.error}>{errors.confirmPassword}</div>
+            </div>
+          )}
 
-            <p
-  style={{ textAlign: "center", marginTop: "10px", cursor: "pointer", color: "blue" }}
-  onClick={() => navigate("/forgot-password")}
->
-  Forgot Password?
-</p>
-          </form>
+          {!isLogin && (
+            <div style={{ marginBottom: "12px" }}>
+              <select style={styles.input} name="role" onChange={handleChange}>
+                <option value="member">Member</option>
+                <option value="treasurer">Treasurer</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          )}
 
-          <p style={styles.switch} onClick={() => setIsLogin(false)}>
-            Create Account
+          <button type="submit" style={styles.button}>
+            {isLogin ? "Login" : "Register"}
+          </button>
+        </form>
+
+        {isLogin && (
+          <p style={styles.link} onClick={() => navigate("/forgot-password")}>
+            Forgot Password?
           </p>
-        </>
-      ) : (
-        <>
-          <h2>Create Account</h2>
+        )}
 
-          <form onSubmit={handleSignup}>
-            <input
-              style={styles.input}
-              placeholder="Full Name"
-              name="name"
-              onChange={handleChange}
-            />
-            <div style={styles.error}>{errors.name}</div>
-
-            <input
-              style={styles.input}
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-            />
-
-            <input
-              style={styles.input}
-              placeholder="Phone"
-              name="phone"
-              onChange={handleChange}
-            />
-
-            <select
-              style={styles.input}
-              name="role"
-              onChange={handleChange}
-            >
-              <option value="member">Member</option>
-              <option value="treasurer">Treasurer</option>
-            </select>
-
-            <input
-              style={styles.input}
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-            />
-
-            <input
-              style={styles.input}
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              onChange={handleChange}
-            />
-
-            <button type="submit" style={styles.button}>
-              Register
-            </button>
-          </form>
-
-          <p style={styles.switch} onClick={() => setIsLogin(true)}>
-            Already have an account? Sign In
-          </p>
-        </>
-      )}
+        <p style={styles.switch} onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? "Create Account" : "Already have an account? Sign In"}
+        </p>
+      </div>
     </div>
   );
 }

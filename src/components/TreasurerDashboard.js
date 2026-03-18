@@ -132,60 +132,133 @@ function TreasurerDashboard() {
   const activeLoans = loans.filter((l) => l.status === "approved");
 
   // Responsive styling with media queries
-  const styles = {
-    container: {
-      padding: "20px",
-      minHeight: "100vh",
-      backgroundColor: "#f1f5f9",
-      fontFamily: "Segoe UI, Arial, sans-serif",
-    },
-    title: { fontSize: "28px", fontWeight: "bold", marginBottom: "25px", color: "#1f2937", textAlign: "center" },
-    grid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+ // Updated section and transactionCard styles for full-page, centered look
+const styles = {
+  container: {
+    padding: "20px",
+    minHeight: "100vh",
+    backgroundColor: "#f1f5f9",
+    fontFamily: "Segoe UI, Arial, sans-serif",
+  },
+  title: { 
+    fontSize: "28px", 
+    fontWeight: "bold", 
+    marginBottom: "25px", 
+    color: "#1f2937", 
+    textAlign: "center" 
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "15px",
+    marginBottom: "30px",
+  },
+  card: {
+    padding: "20px",
+    backgroundColor: "#2563eb",
+    color: "#fff",
+    borderRadius: "10px",
+    fontWeight: "bold",
+    textAlign: "center",
+    cursor: "pointer",
+    transition: "0.3s",
+  },
+  section: { 
+    minHeight: "80vh",
+    marginTop: "20px", 
+    backgroundColor: "#fff", 
+    padding: "30px", 
+    borderRadius: "10px", 
+    boxShadow: "0 6px 15px rgba(0,0,0,0.05)", 
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",       // vertically center all content
+    alignItems: "center",           // horizontally center all content
+    gap: "20px",
+  },
+  transactionCard: {
+    display: "flex",
+    flexDirection: "column",        // stack inputs and buttons vertically
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "15px",
+    width: "100%",                  // make cards full width within section
+    maxWidth: "500px",              // optional max-width for nicer layout
+    backgroundColor: "#f4f4f4",
+    borderRadius: "8px",
+    gap: "10px",
+  },
+  input: { 
+    padding: "10px", 
+    width: "100%", 
+    borderRadius: "6px", 
+    border: "1px solid #d1d5db", 
+    fontSize: "16px"
+  },
+  button: { 
+    padding: "10px 20px", 
+    backgroundColor: "#4f46e5", 
+    color: "#fff", 
+    border: "none", 
+    borderRadius: "6px", 
+    cursor: "pointer", 
+    fontWeight: "bold", 
+    transition: "0.2s",
+    fontSize: "16px"
+  },
+  backButton: { 
+    padding: "12px 25px", 
+    marginTop: "15px", 
+    backgroundColor: "#6b7280", 
+    color: "#fff", 
+    border: "none", 
+    borderRadius: "6px", 
+    cursor: "pointer", 
+    fontWeight: "bold",
+    fontSize: "16px"
+  },
+  logout: { 
+    marginTop: "30px", 
+    padding: "12px", 
+    backgroundColor: "#dc2626", 
+    color: "#fff", 
+    border: "none", 
+    borderRadius: "8px", 
+    cursor: "pointer", 
+    fontWeight: "bold", 
+    fontSize: "16px", 
+    width: "100%", 
+    transition: "0.3s" 
+  },
+  "@media(max-width: 768px)": {
+    section: { 
+      padding: "20px", 
+      minHeight: "70vh",
       gap: "15px",
-      marginBottom: "30px",
     },
-    card: {
-      padding: "20px",
-      backgroundColor: "#2563eb",
-      color: "#fff",
-      borderRadius: "10px",
-      fontWeight: "bold",
-      textAlign: "center",
-      cursor: "pointer",
-      transition: "0.3s",
-    },
-    cardHover: { transform: "translateY(-5px)", boxShadow: "0 8px 20px rgba(0,0,0,0.15)" },
-    section: { marginTop: "20px", backgroundColor: "#fff", padding: "20px", borderRadius: "10px", boxShadow: "0 6px 15px rgba(0,0,0,0.05)" },
     transactionCard: {
-      display: "flex",
-      justifyContent: "space-between",
+      maxWidth: "100%",
+      padding: "12px",
+      fontSize: "14px",
+    },
+    input: { padding: "8px", fontSize: "14px" },
+    button: { padding: "8px 16px", fontSize: "14px" },
+  },
+  "@media(max-width: 480px)": {
+    section: { 
+      padding: "15px", 
+      minHeight: "65vh",
+      gap: "12px",
+    },
+    transactionCard: {
       padding: "10px",
-      marginTop: "8px",
-      backgroundColor: "#f4f4f4",
-      borderRadius: "8px",
-      flexWrap: "wrap",
+      fontSize: "13px",
     },
-    input: { padding: "8px", marginTop: "5px", width: "100%", borderRadius: "6px", border: "1px solid #d1d5db" },
-    button: { padding: "8px 12px", marginLeft: "5px", marginTop: "8px", backgroundColor: "#4f46e5", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer", fontWeight: "bold", transition: "0.2s" },
-    backButton: { padding: "10px 15px", marginTop: "15px", backgroundColor: "#6b7280", color: "#fff", border: "none", borderRadius: "6px", cursor: "pointer", fontWeight: "bold" },
-    logout: { marginTop: "30px", padding: "12px", backgroundColor: "#dc2626", color: "#fff", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: "bold", fontSize: "16px", width: "100%", transition: "0.3s" },
-    // media query for mobile
-    "@media(max-width: 768px)": {
-      grid: { gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px" },
-      card: { padding: "15px", fontSize: "14px" },
-      input: { padding: "6px", fontSize: "14px" },
-      button: { padding: "6px 10px", fontSize: "14px" },
-    },
-    "@media(max-width: 480px)": {
-      grid: { gridTemplateColumns: "1fr", gap: "10px" },
-      card: { padding: "12px", fontSize: "13px" },
-      input: { padding: "5px", fontSize: "13px" },
-      button: { padding: "5px 8px", fontSize: "13px" },
-      title: { fontSize: "22px" },
-    },
-  };
+    input: { padding: "6px", fontSize: "13px" },
+    button: { padding: "6px 12px", fontSize: "13px" },
+    title: { fontSize: "22px" },
+  },
+};
 
   // Function to apply hover styles
   const handleHover = (e, hover = true) => {
