@@ -221,16 +221,17 @@
 
 
 
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function SignUpForm() {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
     name: "",
@@ -264,47 +265,72 @@ function SignUpForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!validateLogin()) return;
-    try {
-      const response = await axios.post("http://localhost:8080/api/users/login", {
-        email: data.email,
-        password: data.password,
-      });
-      if (response.data.status === "00") {
-        const { token, user } = response.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(user));
-        const role = user.role.toLowerCase();
-        if (role === "admin") navigate("/admin");
-        else if (role === "treasurer") navigate("/treasurer");
-        else navigate("/dashboard");
-      } else alert(response.data.message);
-    } catch (error) {
-      alert("Login failed");
-    }
-  };
+const handleLogin = async (e) => {
+  e.preventDefault();
+  if (!validateLogin()) return;
+
+  setLoading(true); // start loading
+
+  try {
+    const response = await axios.post("http://localhost:8080/api/users/login", {
+      email: data.email,
+      password: data.password,
+    });
+
+    if (response.data.status === "00") {
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      const role = user.role.toLowerCase();
+      if (role === "admin") navigate("/admin");
+      else if (role === "treasurer") navigate("/treasurer");
+      else navigate("/dashboard");
+    } else alert(response.data.message);
+
+  } catch (error) {
+  alert(error.response?.data?.message || "Login failed");
+} finally {
+    setLoading(false); // stop loading
+  }
+};
+
+const location = useLocation();
+
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  if (params.get("verified")) {
+    alert(" Email verified successfully. You can now login.");
+  }
+}, [location]);
 
   const handleSignup = async (e) => {
-    e.preventDefault();
-    if (!validateSignup()) return;
-    try {
-      const response = await axios.post("http://localhost:8080/api/users/register", {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        password: data.password,
-        role: data.role,
-      });
-      if (response.data.status === "00") {
-        alert("Account created successfully");
-        setIsLogin(true);
-      } else alert(response.data.message);
-    } catch (error) {
-      alert("Signup failed");
-    }
-  };
+  e.preventDefault();
+  if (!validateSignup()) return;
+
+  setLoading(true); // start loading
+
+  try {
+    const response = await axios.post("http://localhost:8080/api/users/register", {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      password: data.password,
+      role: data.role,
+    });
+
+    if (response.data.status === "00") {
+      alert(response.data.message);
+      setIsLogin(true);
+    } else alert(response.data.message);
+
+  } catch (error) {
+  console.error(error.response?.data);
+  alert(error.response?.data?.message || "Signup failed");
+} finally {
+    setLoading(false); // stop loading
+  }
+};
 
   /* STYLES */
   const styles = {
@@ -370,6 +396,16 @@ function SignUpForm() {
       cursor: "pointer",
       transition: "0.3s",
     },
+
+    spinner: {
+  border: "3px solid #f3f3f3",
+  borderTop: "3px solid #fff",
+  borderRadius: "50%",
+  width: "16px",
+  height: "16px",
+  animation: "spin 1s linear infinite",
+  margin: "0 auto",
+},
     switch: {
       marginTop: "15px",
       textAlign: "center",
@@ -409,6 +445,7 @@ function SignUpForm() {
                   style={styles.input}
                   placeholder="Full Name"
                   name="name"
+                  value={data.name}
                   onChange={handleChange}
                 />
                 <div style={styles.error}>{errors.name}</div>
@@ -431,6 +468,7 @@ function SignUpForm() {
               style={styles.input}
               placeholder="Email"
               name="email"
+              value={data.email}
               onChange={handleChange}
             />
             <div style={styles.error}>{errors.email}</div>
@@ -476,9 +514,23 @@ function SignUpForm() {
             </div>
           )}
 
-          <button type="submit" style={styles.button}>
-            {isLogin ? "Login" : "Register"}
-          </button>
+         <button
+  type="submit"
+  style={{
+    ...styles.button,
+    opacity: loading ? 0.7 : 1,
+    cursor: loading ? "not-allowed" : "pointer",
+  }}
+  disabled={loading}
+>
+  {loading
+    ? isLogin
+      ? "Logging in..."
+      : "Creating account..."
+    : isLogin
+    ? "Login"
+    : "Register"}
+</button>
         </form>
 
         {isLogin && (

@@ -276,10 +276,13 @@ function MemberDashboard() {
   }
 };
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
+  const confirmLogout = window.confirm("Do you want to leave this page?");
+
+  if (confirmLogout) {
+    localStorage.clear(); // better than removing one by one
+    navigate("/login", { replace: true });
+  }
+};
 
   if (!dashboard)
     return (
