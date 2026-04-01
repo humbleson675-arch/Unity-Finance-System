@@ -5,7 +5,7 @@ function Contact() {
     container: {
       minHeight: "100vh",
       padding: "40px 20px",
-      backgroundColor: "#f4f6fb", // subtle banking background
+      backgroundColor: "#b0b1b4", // subtle banking background
       display: "flex",
       justifyContent: "center",
       alignItems: "flex-start",
@@ -24,7 +24,7 @@ function Contact() {
     title: {
       textAlign: "center",
       fontSize: "32px",
-      color: "#1e3a8a",
+      color: "#047413",
       marginBottom: "12px",
       fontWeight: "600",
     },
@@ -42,7 +42,7 @@ function Contact() {
 
     sectionTitle: {
       fontSize: "20px",
-      color: "#1e40af",
+      color: "#047413",
       marginBottom: "12px",
       borderBottom: "2px solid #e0e7ff",
       paddingBottom: "6px",
@@ -56,7 +56,7 @@ function Contact() {
     },
 
     link: {
-      color: "#2563eb",
+      color: "#047413",
       textDecoration: "none",
       fontWeight: "500",
     },
@@ -88,7 +88,7 @@ function Contact() {
     },
 
     button: {
-      backgroundColor: "#1e40af",
+      backgroundColor: "#047413",
       color: "#ffffff",
       padding: "14px",
       borderRadius: "8px",
@@ -100,7 +100,7 @@ function Contact() {
     },
 
     buttonHover: {
-      backgroundColor: "#2563eb",
+      backgroundColor: "#047413",
       transform: "translateY(-2px)",
     },
 
@@ -150,7 +150,7 @@ function Contact() {
 
         {/* Social Media */}
         <div style={styles.section}>
-          <h3 style={styles.sectionTitle}>🌐 Social Media</h3>
+          <h3 style={styles.sectionTitle}>Social Media</h3>
           <p style={styles.text}>
             <strong>Facebook:</strong> Peter Gatkuothjr Son Dengjoklual
           </p>
@@ -161,7 +161,7 @@ function Contact() {
 
         {/* Location */}
         <div style={styles.section}>
-          <h3 style={styles.sectionTitle}>📍 Location</h3>
+          <h3 style={styles.sectionTitle}> Location</h3>
           <p style={styles.text}>Turkana County, Kakuma Refugee Camp</p>
           <p style={styles.text}>Zone 3, Block 5, Group 20</p>
         </div>

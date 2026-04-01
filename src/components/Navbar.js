@@ -7,7 +7,7 @@ import logo from "../assets/logo.png";
 function Navbar(props) {
   return (
     <>
-        <div style={{    backgroundColor: "rgb(30, 58, 138)",
+        <div style={{    backgroundColor: "#047413",
                          display: "flex",
                          textDecoration: "none",
                          justifyContent: "spacebetween",

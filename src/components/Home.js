@@ -45,7 +45,7 @@ function Home() {
   const styles = {
     container: {
       fontFamily: "Segoe UI, sans-serif",
-      background: "#eef2ff",
+      background: "#b0b1b4",
       overflowX: "hidden",
     },
 
@@ -66,7 +66,7 @@ function Home() {
       color: "#fff",
       borderRadius: "20px",
       marginBottom: "60px",
-      background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
+      background: "linear-gradient(135deg, #047413, #047413)",
       transform: `translateY(${offsetY * 0.3}px)`,
     },
 
@@ -88,7 +88,7 @@ function Home() {
       borderRadius: "10px",
       border: "none",
       background: "#fff",
-      color: "#1e3a8a",
+      color: "#047413",
       fontWeight: "bold",
       cursor: "pointer",
       transition: "0.3s",
@@ -114,7 +114,7 @@ function Home() {
     statNumber: {
       fontSize: "32px",
       fontWeight: "bold",
-      color: "#1e3a8a",
+      color: "#047413",
     },
 
     statLabel: {
@@ -149,7 +149,7 @@ function Home() {
     // TEXT
     heading: { textAlign: "center",
                fontSize: "34px",
-               color: "#1e3a8a",
+               color: "#047413",
                marginBottom: "10px",
               },
 

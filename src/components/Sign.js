@@ -340,14 +340,14 @@ useEffect(() => {
       alignItems: "center",
       justifyContent: "center",
       padding: "20px",
-      background: "#ffffff", // page background white
+      background: "#b0b1b4", // page background white
     },
     container: {
       width: "100%",
       maxWidth: "420px",
       padding: "35px 30px",
       borderRadius: "16px",
-      background: "#1e3a8a", // deep blue form
+      background: "#047413", // deep blue form
       boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
       transition: "all 0.5s ease",
       color: "#fff",
@@ -371,7 +371,7 @@ useEffect(() => {
       fontSize: "14px",
       outline: "none",
       transition: "0.3s",
-      color: "#1e3a8a",
+      color: "#047413",
       backgroundColor: "#fff",
     },
     toggleBtn: {
@@ -381,14 +381,14 @@ useEffect(() => {
       transform: "translateY(-50%)",
       cursor: "pointer",
       fontSize: "14px",
-      color: "#1e3a8a",
+      color: "#047413",
       fontWeight: "600",
     },
     button: {
       width: "100%",
       padding: "14px",
       marginTop: "15px",
-      background: "#2563eb", // lighter blue for button
+      background: "#047413", // lighter blue for button
       color: "#fff",
       border: "none",
       borderRadius: "10px",

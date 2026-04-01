@@ -116,7 +116,7 @@ const data = [
 const styles = {
   page: {
     fontFamily: "Segoe UI, sans-serif",
-    background: "#eef2ff",
+    background: "#b0b1b4",
     overflowX: "hidden",
     position: "relative",
   },
@@ -126,7 +126,7 @@ const styles = {
     position: "absolute",
     width: "300px",
     height: "300px",
-    background: "#3b82f6",
+    background: "#047413",
     borderRadius: "50%",
     top: "-80px",
     left: "-80px",
@@ -138,7 +138,7 @@ const styles = {
     position: "absolute",
     width: "300px",
     height: "300px",
-    background: "#1e3a8a",
+    background: "#047413",
     borderRadius: "50%",
     bottom: "-80px",
     right: "-80px",
@@ -154,7 +154,7 @@ const styles = {
 
   heroTitle: {
     fontSize: "clamp(32px,5vw,50px)",
-    color: "#1e3a8a",
+    color: "#047413",
     fontWeight: "700",
   },
 
@@ -168,7 +168,7 @@ const styles = {
     padding: "14px 30px",
     borderRadius: "10px",
     border: "none",
-    background: "linear-gradient(135deg,#1e3a8a,#2563eb)",
+    background: "linear-gradient(135deg,#047413,#047413)",
     color: "#fff",
     cursor: "pointer",
     transition: "0.3s",
@@ -215,13 +215,13 @@ const styles = {
 
   title: {
     textAlign: "center",
-    color: "#1e3a8a",
+    color: "#047413",
     marginBottom: "10px",
   },
 
   text: {
     textAlign: "center",
-    color: "#374151",
+    color: "#047413",
   },
 
   list: {
@@ -233,6 +233,7 @@ const styles = {
     padding: "10px",
     marginBottom: "8px",
     background: "#f3f4f6",
+    color: "#047413",
     borderRadius: "8px",
     textAlign: "center",
   },
@@ -242,7 +243,7 @@ const styles = {
     marginTop: "50px",
     padding: "80px 20px",
     textAlign: "center",
-    background: "linear-gradient(135deg,#1e3a8a,#2563eb)",
+    background: "linear-gradient(135deg,#047413,#047413)",
     color: "#fff",
     borderRadius: "20px 20px 0 0",
   },

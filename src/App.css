@@ -64,6 +64,30 @@
   }
 }
 
+
+/* Hide menu & show hamburger on small screens */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  nav div[style*="cursor: pointer"] {
+    display: block !important;
+  }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+
+  nav div[style*="cursor: pointer"] {
+    display: block !important;
+  }
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
