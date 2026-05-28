@@ -80,7 +80,7 @@ export default Connect;
 /* DATA */
 const cards = [
   {
-    title: "Why Connect With DLSMS?",
+    title: "Why Connect With Unity Finance System?",
     text: "Connecting with us opens opportunities to collaborate on transparent and innovative financial solutions.",
   },
   {

@@ -81,6 +81,7 @@ function Home() {
       maxWidth: "700px",
       marginBottom: "30px",
       color: "#dbeafe",
+      
     },
 
     heroButton: {

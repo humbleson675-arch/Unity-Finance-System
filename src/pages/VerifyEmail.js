@@ -112,7 +112,7 @@ export default function VerifyEmail() {
     const verify = async () => {
       try {
         // Call backend to verify
-        await axios.get(`http://localhost:8080/api/users/verify/${token}`);
+        await axios.get(`http://localhost:3000/api/users/verify/${token}`);
         
         // Redirect to login
         setMessage("Email verified! Redirecting to login...");

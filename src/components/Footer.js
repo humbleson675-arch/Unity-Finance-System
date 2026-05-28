@@ -7,11 +7,11 @@ function Footer({ page = "home",}) {
       <div style={styles.container}>
         {/* LEFT */}
         <div style={styles.left}>
-          <h4 style={styles.title}>DLSMS</h4>
+          <h4 style={styles.title}>UFSMS</h4>
 
           {page === "home" && (
             <p style={styles.texts}>
-              Digital Loan & Savings Management System empowering refugee
+              Unity Finance & Savings Management System empowering refugee
               community groups through transparency and accountability.
             </p>
           )}
@@ -23,10 +23,10 @@ function Footer({ page = "home",}) {
           <ul style={styles.list}>
             <li><Link to="/" style={styles.link}>Home</Link></li>
             <li><Link to="/about" style={styles.link}>About</Link></li>
-            <li><Link to="/support" style={styles.link}>Support</Link></li>
+            <li><Link to="/connect" style={styles.link}>Connect</Link></li>
             <li><Link to="/contact" style={styles.link}>Contact</Link></li>
             <li><Link to="/sign" style={styles.link}>Sign up</Link></li>
-            <li><Link to="/login" style={styles.link}>Login</Link></li>
+            
             
           </ul>
         </div>
