@@ -41,9 +41,9 @@ function App() {
         <Route path="/about" element={<PublicPage Component={About} />} />
         <Route path="/connect" element={<PublicPage Component={Connect} />} />
         <Route path="/contact" element={<PublicPage Component={Contact} />} />
-        {/* <Route path="/sign" element={<PublicPage Component={Sign} />} /> */}
+        <Route path="/sign" element={<PublicPage Component={Sign} />} />
         <Route path="/forgot-password" element={<PublicPage Component={ForgotPassword} />} />
-        <Route path="/sign" element={<PublicPage Component={Sign} /> } />
+        {/* <Route path="/sign" element={<PublicPage Component={Sign} /> } /> */}
        <Route path="/verify/:token" element={<VerifyEmail />} />
 
         <Route
