@@ -16,8 +16,6 @@ import AdminDashboard from "./components/AdminDashboard";
 import TreasurerDashboard from "./components/TreasurerDashboard";
 import DashboardLayout from "./components/DashboardLayout";
 import ProtectedRoute from "./components/protectRoutes";
-import SignUpForm from "./components/Sign";
-
 
 const PublicPage = ({ Component }) => (
   <>
@@ -43,9 +41,9 @@ function App() {
         <Route path="/about" element={<PublicPage Component={About} />} />
         <Route path="/connect" element={<PublicPage Component={Connect} />} />
         <Route path="/contact" element={<PublicPage Component={Contact} />} />
-        <Route path="/sign" element={<PublicPage Component={Sign} />} />
+        {/* <Route path="/sign" element={<PublicPage Component={Sign} />} /> */}
         <Route path="/forgot-password" element={<PublicPage Component={ForgotPassword} />} />
-        <Route path="/login" element={<PublicPage Component={SignUpForm} /> } />
+        <Route path="/sign" element={<PublicPage Component={Sign} /> } />
        <Route path="/verify/:token" element={<VerifyEmail />} />
 
         <Route
