@@ -1,16 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Footer({ page = "home",}) {
+function Footer({ page = "home" }) {
   return (
-    <footer style={styles.footer}>
-      <div style={styles.container}>
+    <footer
+      style={{
+        background: "#1f2933",
+        color: "#fff",
+        padding: "40px 20px 20px",
+        marginTop: "auto",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          gap: "30px",
+        }}
+      >
         {/* LEFT */}
-        <div style={styles.left}>
-          <h4 style={styles.title}>UFSMS</h4>
+        <div
+          style={{
+            flex: "1 1 250px",
+            minWidth: "250px",
+          }}
+        >
+          <h4 style={{ marginBottom: "15px", fontSize: "18px" }}>UFSMS</h4>
 
           {page === "home" && (
-            <p style={styles.texts}>
+            <p
+              style={{
+                color: "#d1d5db",
+                fontSize: "14px",
+                lineHeight: "1.6",
+              }}
+            >
               Unity Finance & Savings Management System empowering refugee
               community groups through transparency and accountability.
             </p>
@@ -18,111 +45,157 @@ function Footer({ page = "home",}) {
         </div>
 
         {/* CENTER */}
-        <div style={styles.center}>
-          <h4 style={styles.title}>Quick Links</h4>
-          <ul style={styles.list}>
-            <li><Link to="/" style={styles.link}>Home</Link></li>
-            <li><Link to="/about" style={styles.link}>About</Link></li>
-            <li><Link to="/connect" style={styles.link}>Connect</Link></li>
-            <li><Link to="/contact" style={styles.link}>Contact</Link></li>
-            <li><Link to="/sign" style={styles.link}>Sign up</Link></li>
-            
-            
+        <div
+          style={{
+            flex: "1 1 250px",
+            minWidth: "250px",
+          }}
+        >
+          <h4 style={{ marginBottom: "15px", fontSize: "18px" }}>
+            Quick Links
+          </h4>
+
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+            }}
+          >
+            <li style={{ marginBottom: "10px" }}>
+              <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: "#d1d5db",
+                }}
+              >
+                Home
+              </Link>
+            </li>
+
+            <li style={{ marginBottom: "10px" }}>
+              <Link
+                to="/about"
+                style={{
+                  textDecoration: "none",
+                  color: "#d1d5db",
+                }}
+              >
+                About
+              </Link>
+            </li>
+
+            <li style={{ marginBottom: "10px" }}>
+              <Link
+                to="/connect"
+                style={{
+                  textDecoration: "none",
+                  color: "#d1d5db",
+                }}
+              >
+                Connect
+              </Link>
+            </li>
+
+            <li style={{ marginBottom: "10px" }}>
+              <Link
+                to="/contact"
+                style={{
+                  textDecoration: "none",
+                  color: "#d1d5db",
+                }}
+              >
+                Contact
+              </Link>
+            </li>
+
+            <li style={{ marginBottom: "10px" }}>
+              <Link
+                to="/sign"
+                style={{
+                  textDecoration: "none",
+                  color: "#d1d5db",
+                }}
+              >
+                Sign Up
+              </Link>
+            </li>
           </ul>
         </div>
 
         {/* RIGHT */}
-        <div style={styles.right}>
+        <div
+          style={{
+            flex: "1 1 250px",
+            minWidth: "250px",
+          }}
+        >
           {(page === "home" || page === "login") && (
             <>
-              <h4 style={styles.title}>What we do</h4>
-              <p style={styles.text}>Secure Digital Savings</p>
-              <p style={styles.text}>Instant Digital Loans</p>
-              <p style={styles.text}>Improved Safety & Transparency</p>
+              <h4 style={{ marginBottom: "15px", fontSize: "18px" }}>
+                What We Do
+              </h4>
+
+              <p
+                style={{
+                  color: "#d1d5db",
+                  fontSize: "14px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Secure Digital Savings
+              </p>
+
+              <p
+                style={{
+                  color: "#d1d5db",
+                  fontSize: "14px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Instant Digital Loans
+              </p>
+
+              <p
+                style={{
+                  color: "#d1d5db",
+                  fontSize: "14px",
+                  lineHeight: "1.6",
+                }}
+              >
+                Improved Safety & Transparency
+              </p>
             </>
           )}
 
           {page === "dashboard" && (
-            <p style={styles.text}>Version 1.0.0</p>
+            <p
+              style={{
+                color: "#d1d5db",
+                fontSize: "14px",
+              }}
+            >
+              Version 1.0.0
+            </p>
           )}
-
-          <p style={styles.copy}>
-            © {new Date().getFullYear()} DLSMS
-          </p>
         </div>
+      </div>
+
+      <div
+        style={{
+          borderTop: "1px solid #374151",
+          marginTop: "25px",
+          paddingTop: "15px",
+          textAlign: "center",
+          color: "#9ca3af",
+          fontSize: "13px",
+        }}
+      >
+        © {new Date().getFullYear()} DLSMS. All Rights Reserved.
       </div>
     </footer>
   );
 }
 
 export default Footer;
-
-/* STYLES */
-const styles = {
-  footer: {
-    backgroundColor: "#1f2933",
-    color: "#ffffff",
-    padding: "30px 20px",
-    marginTop: "auto", // for sticky footer layout
-  },
-  container: {
-    maxWidth: "1100px",
-    height: "50%",
-    margin: "0 auto",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: "50px",
-  },
-  left: {
-    flex: "1 1 300px",
-    textAlign: "left",
-
-  },
-  center: {
-    flex: "1 1 300px",
-    textAlign: "left",
-  },
-  right: {
-    flex: "1 1 100px",
-    textAlign: "right",
-  },
-  title: {
-    margin: "0 0 10px 0",
-    fontSize: "18px",
-  },
-  list: {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-  },
-  link: {
-    textDecoration: "none",
-    color: "#d1d5db",
-    fontSize: "14px",
-    display: "block",
-    marginBottom: "6px",
-    transition: "color 0.2s ease",
-  },
-  text: {
-    margin: "20px 0",
-    fontSize: "14px",
-    color: "#d1d5db",
-    textAlign: "right",
-    marginLeft: "65px",
-  },
-  texts: {
-    margin: "20px 0",
-    fontSize: "14px",
-    color: "#d1d5db",
-    textAlign: "left",
-    marginRight: "80px",
-    paddingRight:"80px",
-  },
-
-  copy: {
-    marginTop: "10px",
-    fontSize: "12px",
-    color: "#9ca3af",
-  },
-};
