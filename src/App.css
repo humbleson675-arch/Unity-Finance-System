@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+/* Navbar responsive */
+.nav-hamburger { display: none; }
+
+@media (max-width: 768px) {
+  .nav-desktop-links { display: none !important; }
+  .nav-hamburger     { display: flex !important; }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
