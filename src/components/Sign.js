@@ -283,11 +283,7 @@ useEffect(() => {
 
           {!isLogin && (
             <div style={{ marginBottom: "12px" }}>
-              <select style={styles.input} name="role" onChange={handleChange}>
-                <option value="member">Member</option>
-                <option value="treasurer">Treasurer</option>
-                <option value="admin">Admin</option>
-              </select>
+             
             </div>
           )}
 
