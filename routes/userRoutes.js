@@ -92,12 +92,12 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    if (!user.isVerified) {
-      return res.status(403).json({
-        status: "01",
-        message: "Please verify your email first"
-      });
-    }
+    // if (!user.isVerified) {
+    //   return res.status(403).json({
+    //     status: "01",
+    //     message: "Please verify your email first"
+    //   });
+    // }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
