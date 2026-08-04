@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Homeimage1 from "../assets/imag.png";
 import Homeimage2 from "../assets/.png";
 import Homeimage3 from "../assets/cash.png";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate= useNavigate();
   const [hoverIndex, setHoverIndex] = useState(null);
   const [offsetY, setOffsetY] = useState(0);
 
@@ -184,7 +186,7 @@ function Home() {
           <p style={styles.heroText}>
             Save smarter, borrow better, and stay in control of your money.
           </p>
-          <button style={styles.heroButton}>Get Started</button>
+          <button style={styles.heroButton} onClick={()=> navigate ("/sign")}>Get Started</button>
         </section>
 
         {/* STATS */}

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Connect() {
+  const navigate= useNavigate();
   const [visible, setVisible] = useState([]);
   const refs = useRef([]);
 
@@ -41,7 +43,7 @@ function Connect() {
         <p style={styles.heroText}>
           Let’s collaborate to build transparent and impactful financial systems.
         </p>
-        <button style={styles.button}>Get In Touch</button>
+        <button style={styles.button} onClick={() => navigate ("/contact")}>Get In Touch</button>
       </section>
 
       {/* CONTENT */}

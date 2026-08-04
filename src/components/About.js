@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function About() {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState([]);
   const refs = useRef([]);
 
@@ -41,7 +43,7 @@ function About() {
         <p style={styles.heroText}>
           Secure. Transparent. Built for modern communities.
         </p>
-        <button style={styles.ctaBtn}>Get Started</button>
+        <button style={styles.ctaBtn} onClick={() => navigate ("/sign")}>Get Started</button>
       </section>
 
       {/* STATS */}
