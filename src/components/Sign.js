@@ -12,8 +12,11 @@ function SignUpForm() {
 
   const [data, setData] = useState({
     name: "",
-    email: "",
+    gender: "",
+    location: "",
     phone: "",
+    id: "",
+    email: "",
     password: "",
     confirmPassword: "",
     role: "member",
@@ -34,8 +37,11 @@ function SignUpForm() {
   const validateSignup = () => {
     const newErrors = {};
     if (!data.name) newErrors.name = "Full name required";
+    if (!data.gender) newErrors.gender = "gender required"; 
+    if (!data.location) newErrors.location = "location required";
     if (!data.phone) newErrors.phone = "Phone required";
-    if (!data.email) newErrors.email = "Email required";
+    if(!data.id) newErrors.id = "id required";
+    if (!data.email) newErrors.email = "email required";
     if (data.password.length < 6) newErrors.password = "Password must be 6 characters";
     if (data.password !== data.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
     setErrors(newErrors);
@@ -90,8 +96,11 @@ useEffect(() => {
   try {
     const response = await axios.post("http://localhost:8080/api/users/register", {
       name: data.name,
+      gender: data.gender,
+      location: data.location,
       email: data.email,
       phone: data.phone,
+      id: data.id,
       password: data.password,
       role: data.role,
     });
@@ -215,7 +224,7 @@ useEffect(() => {
         <h2 style={styles.title}>{isLogin ? "Sign In" : "Create Account"}</h2>
 
         <form onSubmit={isLogin ? handleLogin : handleSignup}>
-          {!isLogin && (
+          {/* {!isLogin && (
             <>
               <div style={styles.inputWrapper}>
                 <input
@@ -238,8 +247,74 @@ useEffect(() => {
                 <div style={styles.error}>{errors.phone}</div>
               </div>
             </>
-          )}
+          // )} */}
 
+{!isLogin && (
+  <>
+    {/* Full Name */}
+    <div style={styles.inputWrapper}>
+      <input
+        style={styles.input}
+        placeholder="Full Name"
+        name="name"
+        value={data.name}
+        onChange={handleChange}
+      />
+      <div style={styles.error}>{errors.name}</div>
+    </div>
+
+    {/* Gender */}
+    <div style={styles.inputWrapper}>
+      <select
+        style={styles.input}
+        name="gender"
+        value={data.gender}
+        onChange={handleChange}
+      >
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div style={styles.error}>{errors.gender}</div>
+    </div>
+
+    {/* Location */}
+    <div style={styles.inputWrapper}>
+      <input
+        style={styles.input}
+        placeholder="Location"
+        name="location"
+        value={data.location}
+        onChange={handleChange}
+      />
+      <div style={styles.error}>{errors.location}</div>
+    </div>
+
+    {/* Phone */}
+    <div style={styles.inputWrapper}>
+      <input
+        style={styles.input}
+        placeholder="Phone Number"
+        name="phone"
+        value={data.phone}
+        onChange={handleChange}
+      />
+      <div style={styles.error}>{errors.phone}</div>
+    </div>
+
+    {/* National ID */}
+    <div style={styles.inputWrapper}>
+      <input
+        style={styles.input}
+        placeholder="National ID / Refugee ID"
+        name="id"
+        value={data.id}
+        onChange={handleChange}
+      />
+      <div style={styles.error}>{errors.nationalId}</div>
+    </div>
+  </>
+)}
           <div style={styles.inputWrapper}>
             <input
               style={styles.input}
