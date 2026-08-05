@@ -8,10 +8,8 @@ const router = express.Router();
 
 // ---------------------- REGISTER USER ----------------------
 router.post("/register", async (req, res) => {
-  try {
-    const { name, email, phone, password, role } = req.body;
-
-    if (!name || !email || !password || !phone) {
+  try {const { name, gender, location, phone, id, email, password, role } = req.body;
+  if (!name|| !gender|| !location|| !id || !email || !password || !phone) {
       return res.status(400).json({
         message: "All fields are required",
         status: "01"
@@ -30,7 +28,10 @@ router.post("/register", async (req, res) => {
 
     const newUser = await User.create({
       name,
+      gender,
+      location,
       email,
+      id,
       phone,
       password: hashedPassword,
       role: role || "member",
