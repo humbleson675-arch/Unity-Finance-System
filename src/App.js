@@ -21,9 +21,9 @@ const PublicPage = ({ Component }) => (
   <>
     <Navbar
       link1="Home"
-      link2="About"
-      link3="Connect"
-       link4="Contact"
+      link2="About Us"
+      link3="Connect with Us"
+       link4="Reach Us"
       link5="Sign up"
     />
     <Component />
