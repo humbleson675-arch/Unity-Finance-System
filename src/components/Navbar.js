@@ -2,7 +2,7 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "./public/finance.jpg";
 
 function Navbar(props) {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
